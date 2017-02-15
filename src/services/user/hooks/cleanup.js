@@ -9,15 +9,32 @@ function cleanup(user, currentUser) {
   return { _id, name }
 }
 
+function isAuthenticating(hook) {
+  return !!hook.data && (hook.data.email === hook.result.email);
+}
+
+function isEmailQuery(hook, user) {
+  return !!hook.params.query &&
+    !!hook.params.query &&
+    (hook.params.query.email === user.email)
+}
+
 module.exports = function(hook) {
+  console.log('Running Cleanup Hook....')
   const currentUser = hook.params.user
 
   // √ for methods: find and get
   if (hook.method === 'find') {
     hook.result.data = hook.result.data.map((user) => {
-      cleanup(user, currentUser)
+       // 2 lines below are needed for auth/local requests
+      if (isAuthenticating(hook)) return user
+      if (isEmailQuery(hook, user)) return user
+
+      return cleanup(user, currentUser)
     })
   } else {
+    console.log(hook.data, hook.result)
+    if (isAuthenticating(hook)) return hook // needed for auth/local requests
     hook.result = cleanup(hook.result, currentUser)
   }
 }
