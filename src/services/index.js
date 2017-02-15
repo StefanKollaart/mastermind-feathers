@@ -1,6 +1,6 @@
 'use strict';
-const ingredient = require('./ingredient');
-const recipe = require('./recipe');
+const game = require('./game');
+const row = require('./row');
 const authentication = require('./authentication');
 const user = require('./user');
 const mongoose = require('mongoose');
@@ -12,6 +12,6 @@ module.exports = function() {
 
   app.configure(authentication);
   app.configure(user);
-  app.configure(recipe);
-  app.configure(ingredient);
+  app.configure(game);
+  app.configure(row);
 };
