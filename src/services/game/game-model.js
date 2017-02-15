@@ -27,7 +27,7 @@ const gameSchema = new Schema({
   creator: { type: Schema.Types.ObjectId, ref: 'user' },
   started: { type: Boolean, default: false },
   turn: { type: Schema.Types.ObjectId, ref: 'user' },
-  colorCode: { type: Array, required: true },
+  colorCode: { type: Array },
   createdAt: { type: Date, 'default': Date.now },
   updatedAt: { type: Date, 'default': Date.now }
 });

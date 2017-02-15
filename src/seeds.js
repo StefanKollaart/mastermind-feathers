@@ -24,6 +24,9 @@ const user = {
 const games = [{
     name: 'Papier hier',
     colorCode: [1, 2, 3, 4]
+  },
+  {
+    name: 'Smack that'
   }]
 
 userService.create(user)
