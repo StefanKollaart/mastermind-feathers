@@ -23,7 +23,7 @@ const colorScheme = {
 
 const rowSchema = new Schema({
   guesses: { type: Array, required: true },
-  answer: { type: Array, required: true }
+  answer: { type: Array, required: true },
   createdAt: { type: Date, 'default': Date.now },
   updatedAt: { type: Date, 'default': Date.now }
 });

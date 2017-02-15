@@ -21,7 +21,7 @@ exports.before = {
     auth.verifyToken(),
     auth.populateUser(),
     auth.restrictToAuthenticated(),
-    assignColorCode(),
+    // assignColorCode(),
     // assignAuthor()
   ],
   update: [

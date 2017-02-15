@@ -13,7 +13,7 @@ const app = feathers()
 
 // services
 const userService = app.service('users');
-const recipeService = app.service('recipes');
+const gameService = app.service('games');
 
 const user = {
   name: 'Jamie Gulliver',
@@ -21,11 +21,10 @@ const user = {
   password: 'abcd1234'
 }
 
-const game = [
-  {
-    
-  }
-]
+const games = [{
+    name: 'Papier hier',
+    colorCode: [1, 2, 3, 4]
+  }]
 
 userService.create(user)
   .then((result) => {
@@ -36,14 +35,14 @@ userService.create(user)
       email: user.email,
       password: user.password,
     }).then((result) => {
-      console.log('Authenticated, seeding recipes...');
+      console.log('Authenticated, seeding games...');
 
-      recipes.map((recipe) => {
-        recipeService.create(Object.assign({}, recipe, { token: result.token }))
+      games.map((game) => {
+        gameService.create(Object.assign({}, game, { token: result.token }))
           .then((result) => {
-            console.log('Recipe seeded...');
+            console.log('Game seeded...');
           }).catch((error) => {
-            console.error('Error seeding recipe!', error);
+            console.error('Error seeding game!', error);
           });
       })
     }).catch((error) => {
