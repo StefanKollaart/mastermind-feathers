@@ -12,6 +12,8 @@ const assignColorCode = require('./create-color-code')
 const populateAuthor = common.populate('author', { service: 'users', field: 'authorId' });
 const populateLikes = common.populate('likes', { service: 'users', field: 'likedBy' })
 
+// after hook: let users join the game
+const makeJoinable = require('./able-to-join');
 const makeLikeable = require('./make-likeable');
 
 exports.before = {
@@ -28,11 +30,13 @@ exports.before = {
     auth.verifyToken(),
     auth.populateUser(),
     auth.restrictToAuthenticated(),
+    makeJoinable(),
   ],
   patch: [
     auth.verifyToken(),
     auth.populateUser(),
     auth.restrictToAuthenticated(),
+    makeJoinable(),
   ],
   remove: [
     auth.verifyToken(),
