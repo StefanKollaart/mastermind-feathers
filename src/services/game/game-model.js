@@ -10,23 +10,29 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const colorScheme = {
+const colorSchema = {
   1: 'red',
   2: 'cyan',
   3: 'green',
   4: 'orange',
   5: 'magenta',
   6: 'blue',
-  'correct': 'green',
-  'correctColor': 'yellow'
 };
+
+const rowSchema = new Schema ({
+  guesses: { type: Array, required: true },
+  answer: { type: Array, required: true },
+  createdAt: { type: Date, 'default': Date.now },
+  updatedAt: { type: Date, 'default': Date.now }
+});
 
 const gameSchema = new Schema({
   name: { type: String, required: true },
   players: [ Schema.Types.ObjectId ],
   creator: { type: Schema.Types.ObjectId, ref: 'user' },
   started: { type: Boolean, default: false },
-  turn: { type: Schema.Types.ObjectId, ref: 'user' },
+  activeTurn: { type: Schema.Types.ObjectId, ref: 'user' },
+  rows: [ rowSchema ],
   colorCode: { type: Array },
   createdAt: { type: Date, 'default': Date.now },
   updatedAt: { type: Date, 'default': Date.now }

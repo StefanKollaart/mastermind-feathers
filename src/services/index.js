@@ -1,6 +1,5 @@
 'use strict';
 const game = require('./game');
-const row = require('./row');
 const authentication = require('./authentication');
 const user = require('./user');
 const mongoose = require('mongoose');
@@ -13,5 +12,4 @@ module.exports = function() {
   app.configure(authentication);
   app.configure(user);
   app.configure(game);
-  app.configure(row);
 };
