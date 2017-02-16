@@ -19,11 +19,11 @@ module.exports = function() {
   app.use('/games', service(options));
 
   // Get our initialize service to that we can bind hooks
-  const recipeService = app.service('/games');
+  const gameService = app.service('/games');
 
   // Set up our before hooks
-  recipeService.before(hooks.before);
+  gameService.before(hooks.before);
 
   // Set up our after hooks
-  recipeService.after(hooks.after);
+  gameService.after(hooks.after);
 };

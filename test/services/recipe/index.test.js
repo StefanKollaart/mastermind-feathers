@@ -3,8 +3,8 @@
 const assert = require('assert');
 const app = require('../../../src/app');
 
-describe('recipe service', function() {
-  it('registered the recipes service', () => {
-    assert.ok(app.service('recipes'));
+describe('game service', function() {
+  it('registered the games service', () => {
+    assert.ok(app.service('games'));
   });
 });

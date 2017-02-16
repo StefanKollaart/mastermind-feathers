@@ -1,8 +1,8 @@
-// src/services/recipe/recipe-model.js
+// src/services/game/game-model.js
 
 'use strict';
 
-// recipe-model.js - A mongoose model
+// game-model.js - A mongoose model
 //
 // See http://mongoosejs.com/docs/models.html
 // for more of what you can do here.
@@ -19,26 +19,26 @@ const colorSchema = {
   6: 'blue',
 };
 
-const rowSchema = new Schema ({
-  guesses: { type: Array, required: true },
-  answer: { type: Array, required: true },
-  game: { type: Schema.Types.ObjectId, ref: 'gameModel'},
-  createdAt: { type: Date, 'default': Date.now },
-  updatedAt: { type: Date, 'default': Date.now }
-});
+// const rowSchema = new Schema ({
+//   guesses: { type: Array, required: true },
+//   answer: { type: Array, required: true },
+//   game: { type: Schema.Types.ObjectId, ref: 'gameModel'},
+//   createdAt: { type: Date, 'default': Date.now },
+//   updatedAt: { type: Date, 'default': Date.now }
+// });
 
 const gameSchema = new Schema({
   name: { type: String, required: true },
-  players: [ Schema.Types.ObjectId ],
-  creator: { type: Schema.Types.ObjectId, ref: 'user' },
-  started: { type: Boolean, default: false },
-  activeTurn: { type: Schema.Types.ObjectId, ref: 'user' },
+  // players: [ Schema.Types.ObjectId ],
+  // creator: { type: Schema.Types.ObjectId, ref: 'user' },
+  // started: { type: Boolean, default: false },
+  // activeTurn: { type: Schema.Types.ObjectId, ref: 'user' },
   colorCode: { type: Array },
   createdAt: { type: Date, 'default': Date.now },
   updatedAt: { type: Date, 'default': Date.now }
 });
 
 const gameModel = mongoose.model('game', gameSchema);
-const rowModel = mongoose.model('row', rowSchema);
+// const rowModel = mongoose.model('row', rowSchema);
 
 module.exports = gameModel;
