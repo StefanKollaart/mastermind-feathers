@@ -22,6 +22,7 @@ const colorSchema = {
 const rowSchema = new Schema ({
   guesses: { type: Array, required: true },
   answer: { type: Array, required: true },
+  game: { type: Schema.Types.ObjectId, ref: 'gameModel'},
   createdAt: { type: Date, 'default': Date.now },
   updatedAt: { type: Date, 'default': Date.now }
 });
@@ -32,12 +33,12 @@ const gameSchema = new Schema({
   creator: { type: Schema.Types.ObjectId, ref: 'user' },
   started: { type: Boolean, default: false },
   activeTurn: { type: Schema.Types.ObjectId, ref: 'user' },
-  rows: [ rowSchema ],
   colorCode: { type: Array },
   createdAt: { type: Date, 'default': Date.now },
   updatedAt: { type: Date, 'default': Date.now }
 });
 
 const gameModel = mongoose.model('game', gameSchema);
+const rowModel = mongoose.model('row', rowSchema);
 
 module.exports = gameModel;
