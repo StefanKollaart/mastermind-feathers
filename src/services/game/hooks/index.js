@@ -6,10 +6,11 @@ const auth = require('feathers-authentication').hooks;
 const common = require('feathers-hooks-common');
 
 const assignColorCode = require('./create-color-code')
-const makeJoinable = require('./able-to-join');
+const makeJoinable = require('./join-game');
 
 const assignCreator = require('./assign-creator');
 const populateCreator = common.populate('creator', { service: 'users', field: 'creatorId' });
+const populateSecondPlayer = common.populate('secondPlayer', { service: 'users', field: 'secondPlayerId' });
 
 exports.before = {
   all: [],
@@ -44,6 +45,7 @@ exports.before = {
 exports.after = {
   all: [
     populateCreator,
+    populateSecondPlayer,
   ],
   find: [],
   get: [],
