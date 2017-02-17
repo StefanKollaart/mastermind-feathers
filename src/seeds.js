@@ -21,37 +21,10 @@ const user = {
   password: 'abcd1234'
 }
 
-const games = [{
-    name: 'Papier hier',
-    colorCode: [1, 2, 3, 4]
-  },
-  {
-    name: 'Smack that'
-  }]
-
 
 userService.create(user)
   .then((result) => {
-    console.log('User created, authenticating as user...');
-
-    app.authenticate({
-      type: 'local',
-      email: user.email,
-      password: user.password,
-    }).then((result) => {
-      console.log('Authenticated, seeding games...');
-
-      games.map((game) => {
-        gameService.create(Object.assign({}, game, { token: result.token }))
-          .then((result) => {
-            console.log('Game seeded...');
-          }).catch((error) => {
-            console.error('Error seeding game!', error);
-          });
-      })
-    }).catch((error) => {
-      console.error('Error authenticating!', error);
-    });
+    console.log('User created');
   })
   .catch((error) => {
     console.error('Error creating user!', error);
