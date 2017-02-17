@@ -29,8 +29,8 @@ const rowSchema = new Schema ({
 
 const gameSchema = new Schema({
   name: { type: String, required: true },
-  players: [ Schema.Types.ObjectId ],
   creatorId: { type: Schema.Types.ObjectId, ref: 'user' },
+  secondPlayerId: { type: Schema.Types.ObjectId, ref: 'user' },
   started: { type: Boolean, default: false },
   activeTurn: { type: Schema.Types.ObjectId, ref: 'user' },
   rows: [ rowSchema ],

@@ -28,7 +28,7 @@ const games = [{
   {
     name: 'Smack that'
   }]
-  
+
 
 userService.create(user)
   .then((result) => {
