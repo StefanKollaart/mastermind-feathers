@@ -20,6 +20,7 @@ const colorSchema = {
 };
 
 const rowSchema = new Schema ({
+  pegs: { type: Array },
   guesses: { type: Array, required: true },
   answer: { type: Array, required: true },
   game: { type: Schema.Types.ObjectId, ref: 'gameModel'},
