@@ -9,9 +9,9 @@ const assignColorCode = require('./create-color-code')
 const makeJoinable = require('./join-game');
 
 const assignCreator = require('./assign-creator');
-const populateCreator = common.populate('creator', { service: 'users', field: 'creatorId' });
-const populateSecondPlayer = common.populate('secondPlayer', { service: 'users', field: 'secondPlayerId' });
-const populateColorCode = common.populate('colorCode', { service: '', field: 'colorCode'});
+const populateCreator = common.populate('creator', { service: 'users', field: 'creator' });
+// const populateSecondPlayer = common.populate('secondPlayer', { service: 'users', field: 'players' });
+// const populateColorCode = common.populate('colorCode', { service: '', field: 'colorCode'});
 
 exports.before = {
   all: [],
@@ -46,7 +46,7 @@ exports.before = {
 exports.after = {
   all: [
     populateCreator,
-    populateSecondPlayer,
+    // populateSecondPlayer,
   ],
   find: [],
   get: [],

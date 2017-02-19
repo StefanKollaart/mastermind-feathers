@@ -6,9 +6,9 @@ module.exports = function(options) {
   return function(hook) {
     return hook.app.service('games').get(hook.id)
       .then((game) => {
-          const action = '$set';
+          const action = '$push';
           let data = {};
-          data[action] = { secondPlayerId: hook.params.user._id };
+          data[action] = { players: hook.params.user._id };
           hook.data = data;
       })
   }
