@@ -41,6 +41,5 @@ const gameSchema = new Schema({
 });
 
 const gameModel = mongoose.model('game', gameSchema);
-// const rowModel = mongoose.model('row', rowSchema);
 
 module.exports = gameModel;
