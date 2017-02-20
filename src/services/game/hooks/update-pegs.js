@@ -6,6 +6,7 @@ module.exports = function(options) {
   return function(hook) {
     return hook.app.service('games').get(hook.id)
       .then((game) => {
+        if(hook.data.rows) {
           const action = '$push';
           let data = {};
 
@@ -73,6 +74,9 @@ module.exports = function(options) {
             hook.data = data;
 
         }
-      })
-    }
+        } else {
+          hook.id
+      }
+    })
+  }
 }

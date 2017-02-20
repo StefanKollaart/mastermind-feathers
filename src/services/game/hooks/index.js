@@ -29,7 +29,7 @@ exports.before = {
     auth.verifyToken(),
     auth.populateUser(),
     auth.restrictToAuthenticated(),
-    // makeJoinable(),
+    makeJoinable(),
     updatePegs(),
   ],
   patch: [
