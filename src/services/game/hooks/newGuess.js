@@ -6,13 +6,9 @@ module.exports = function(options) {
   return function(hook) {
     return hook.app.service('games').get(hook.id)
       .then((game) => {
-
-          if (hook.params.user_id === undefined) {
-            return
-          }
           const action = '$push';
           let data = {};
-          data[action] = { players: hook.params.user._id };
+          data[action] = { rows: hook.params.user._id };  // user_id --> rows
           hook.data = data;
       })
   }

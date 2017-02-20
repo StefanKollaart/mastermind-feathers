@@ -7,6 +7,7 @@ const common = require('feathers-hooks-common');
 
 const assignColorCode = require('./create-color-code')
 const makeJoinable = require('./join-game');
+const updatePegs = require('./update-pegs');
 
 const assignCreator = require('./assign-creator');
 const populateCreator = common.populate('creator', { service: 'users', field: 'creator' });
@@ -29,12 +30,14 @@ exports.before = {
     auth.populateUser(),
     auth.restrictToAuthenticated(),
     makeJoinable(),
+    updatePegs(),
   ],
   patch: [
     auth.verifyToken(),
     auth.populateUser(),
     auth.restrictToAuthenticated(),
     makeJoinable(),
+    updatePegs(),
   ],
   remove: [
     auth.verifyToken(),

@@ -21,8 +21,8 @@ const colorSchema = {
 
 const rowSchema = new Schema ({
   pegs: { type: Array },
-  guesses: { type: Array, required: true },
-  answer: { type: Array, required: true },
+  guesses: { type: Array },
+  answer: { type: Array},
   game: { type: Schema.Types.ObjectId, ref: 'gameModel'},
   createdAt: { type: Date, 'default': Date.now },
   updatedAt: { type: Date, 'default': Date.now }
