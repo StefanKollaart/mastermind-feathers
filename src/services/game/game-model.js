@@ -21,7 +21,6 @@ const colorSchema = {
 
 const rowSchema = new Schema ({
   pegs: { type: Array },
-  guesses: { type: Array },
   answer: { type: Array},
   game: { type: Schema.Types.ObjectId, ref: 'gameModel'},
   createdAt: { type: Date, 'default': Date.now },
@@ -33,6 +32,7 @@ const gameSchema = new Schema({
   players: [ Schema.Types.ObjectId ],
   creator: { type: Schema.Types.ObjectId, ref: 'user' },
   started: { type: Boolean, default: false },
+  ended: { type: Boolean, default: false },
   activeTurn: { type: Schema.Types.ObjectId, ref: 'user' },
   rows: [ rowSchema ],
   colorCode: { type: Array },

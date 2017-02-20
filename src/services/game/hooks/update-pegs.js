@@ -4,18 +4,75 @@ const errors = require('feathers-errors');
 
 module.exports = function(options) {
   return function(hook) {
-    console.log(hook)
     return hook.app.service('games').get(hook.id)
       .then((game) => {
-
-          if (hook.data.rows === undefined) {
-            return
-          }
-
           const action = '$push';
           let data = {};
-          data[action] = { rows : hook.data.rows[0] };
-          hook.data = data;
+
+          var currentRow = hook.data.rows.length - 1
+
+          var answerArray = hook.data.rows[currentRow].pegs.map(function(answer, index) {
+
+            switch (answer) {
+              case hook.id.colorCode[index]:
+                return 0;
+                break;
+
+              case hook.id.colorCode[0]:
+                return 1;
+                break;
+
+              case hook.id.colorCode[1]:
+                return 1;
+                break;
+
+              case hook.id.colorCode[2]:
+                return 1;
+                break;
+
+              case hook.id.colorCode[3]:
+                return 1;
+                break;
+
+              default:
+                return 2;
+                break;
+
+            }
+          });
+
+          hook.data.rows[0].answer = answerArray
+
+          var overdreven = answerArray.reduce(function(i, k) {
+            if(i == 0 && k == 0) {
+              return true;
+            } else {
+              return false;
+            }
+          });
+
+          if(overdreven) {
+            console.log("Joehoe");
+            data[action] = { rows : hook.data.rows[0] };
+            hook.data = data;
+            data['$set'] = { ended: true };
+
+          } else {
+
+            var newPlayer;
+            console.log(newPlayer);
+
+            for (var i = 0; i < hook.id.players.length; i++) {
+              if(hook.id.players[i] != hook.id.activeTurn) {
+                newPlayer = hook.id.players[i];
+              }
+          }
+
+            data[action] = { rows : hook.data.rows[0]};
+            data['$set'] = { activeTurn: newPlayer };
+            hook.data = data;
+
+        }
       })
     }
 }
