@@ -42,7 +42,7 @@ module.exports = function(options) {
             }
           });
 
-          hook.data.rows[0].answer = answerArray
+          hook.data.rows[0].answer = answerArray.sort()
 
           var overdreven = answerArray.reduce(function(i, k) {
             if(i == 0 && k == 0) {
@@ -62,7 +62,6 @@ module.exports = function(options) {
 
             var newPlayer;
 
-            console.log(hook.id.players)
             for (var i = 0; i < hook.id.players.length; i++) {
               if(hook.id.players[i]._id != hook.id.activeTurn) {
                 newPlayer = hook.id.players[i]._id;
