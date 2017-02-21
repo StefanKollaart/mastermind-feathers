@@ -62,9 +62,10 @@ module.exports = function(options) {
 
             var newPlayer;
 
+            console.log(hook.id.players)
             for (var i = 0; i < hook.id.players.length; i++) {
-              if(hook.id.players[i] != hook.id.activeTurn) {
-                newPlayer = hook.id.players[i];
+              if(hook.id.players[i]._id != hook.id.activeTurn) {
+                newPlayer = hook.id.players[i]._id;
               }
           }
 
