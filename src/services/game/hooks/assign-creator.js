@@ -5,6 +5,6 @@ module.exports = function(options) {
     const user = hook.data.creator;
     hook.data.creator = user._id;
     hook.data.players = user._id;
-    hook.data.activeTurn = user._id;
+    // hook.data.activeTurn = user._id;
   }
 }

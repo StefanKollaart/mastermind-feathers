@@ -10,7 +10,7 @@ module.exports = function(options) {
           const action = '$push';
           let data = {};
           data[action] = { players: hook.params.user._id };
-          data['$set'] = { started: true };
+          data['$set'] = { started: true, activeTurn: hook.params.user._id };
           hook.data = data;
     } else {
         hook.id

@@ -53,7 +53,7 @@ module.exports = function(options) {
           });
 
           if(overdreven) {
-            console.log("Joehoe");
+            hook.data.rows[0].pegs = hook.data.rows[currentRow].pegs
             data[action] = { rows : hook.data.rows[0] };
             hook.data = data;
             data['$set'] = { ended: true };
@@ -61,13 +61,14 @@ module.exports = function(options) {
           } else {
 
             var newPlayer;
-            console.log(newPlayer);
 
             for (var i = 0; i < hook.id.players.length; i++) {
               if(hook.id.players[i] != hook.id.activeTurn) {
                 newPlayer = hook.id.players[i];
               }
           }
+
+            hook.data.rows[0].pegs = hook.data.rows[currentRow].pegs
 
             data[action] = { rows : hook.data.rows[0]};
             data['$set'] = { activeTurn: newPlayer };
