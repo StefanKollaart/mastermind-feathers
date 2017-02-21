@@ -1,7 +1,7 @@
 {
-  "host": "games-api-app.feathersjs.com",
-  "port": 80,
-  "mongodb": "DATABASE_URL",
+  "host": "calmer-vocalist",
+  "port": "PORT",
+  "mongodb": "mongodb://art:kGohqHPjws8@mongodb-service.services:27017/back_up_program",
   "public": "../public/",
   "auth": {
     "token": {
