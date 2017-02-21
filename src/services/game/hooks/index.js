@@ -11,6 +11,7 @@ const updatePegs = require('./update-pegs');
 
 const assignCreator = require('./assign-creator');
 const populateCreator = common.populate('creator', { service: 'users', field: 'creator' });
+const populatePlayers = common.populate('players', { service: 'users', field: 'players' });
 // const populateSecondPlayer = common.populate('players', { service: 'users', field: 'players' });
 // const populateColorCode = common.populate('colorCode', { service: '', field: 'colorCode'});
 
@@ -49,7 +50,7 @@ exports.before = {
 exports.after = {
   all: [
     populateCreator,
-    // populateSecondPlayer,
+    populatePlayers,
   ],
   find: [],
   get: [],
